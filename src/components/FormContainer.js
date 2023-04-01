@@ -4,7 +4,7 @@ import { Form } from '../components/Form';
 
 import VALID_FIELDS from '../fixtures/validFields';
 
-export default function SigninContainer() {
+export default function FormContainer({ category }) {
   const [fields, setFields] = useState({ email: '', password: '' });
 
   const [isButtonActive, setIsButtonActive] = useState(false);
@@ -52,14 +52,11 @@ export default function SigninContainer() {
     checkUserInfo({ name, value });
   }
   return (
-    <>
-      <h1>Login</h1>
-      <Form
-        category="Sign in"
-        onChange={handleChange}
-        fields={fields}
-        isButtonActive={isButtonActive}
-      />
-    </>
+    <Form
+      category={category}
+      onChange={handleChange}
+      fields={fields}
+      isButtonActive={isButtonActive}
+    />
   );
 }

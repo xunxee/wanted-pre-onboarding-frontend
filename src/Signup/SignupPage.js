@@ -1,10 +1,10 @@
-import { Form } from '../components/Form';
+import FormContainer from '../components/FormContainer';
 
 export default function SignupPage() {
   return (
     <>
       <h1>Sign Up</h1>
-      <Form category="Sign up" />
+      <FormContainer category="Sign up" />
     </>
   );
 }
