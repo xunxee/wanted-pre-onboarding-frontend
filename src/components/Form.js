@@ -1,4 +1,4 @@
-export function Form({ category, onChange, fields }) {
+export function Form({ category, onChange, fields, isButtonActive }) {
   const { email, password } = fields;
 
   function handleChange(event) {
@@ -30,6 +30,7 @@ export function Form({ category, onChange, fields }) {
       <button
         type="submit"
         data-testid={category === 'Sign in' ? 'signin-button' : 'signup-button'}
+        disabled={!isButtonActive}
       >
         {category}
       </button>
