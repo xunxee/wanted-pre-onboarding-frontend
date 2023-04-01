@@ -1,3 +1,5 @@
+import SigninContainer from './SigninContainer';
+
 export default function SigninPage() {
-  return <div>SigninPage</div>;
+  return <SigninContainer />;
 }
