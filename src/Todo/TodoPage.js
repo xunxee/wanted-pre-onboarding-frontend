@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useEffect } from 'react';
 
 import { clearItem, getItem } from '../utils';
 
-import { useNavigate } from 'react-router-dom';
+import TodoContainer from './TodoContainer';
 
 export default function TodoPage() {
   const navigate = useNavigate();
@@ -19,8 +21,11 @@ export default function TodoPage() {
 
   return (
     <>
-      <div>TodoPage</div>
-      <button onClick={handleLogout}>로그아웃</button>
+      <div>
+        <div>TodoPage</div>
+        <button onClick={handleLogout}>로그아웃</button>
+      </div>
+      <TodoContainer />
     </>
   );
 }
