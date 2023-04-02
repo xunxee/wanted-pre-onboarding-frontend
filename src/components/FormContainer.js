@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { Form } from '../components/Form';
+import { FormLayout } from './FormLayout';
 
 import VALID_FIELDS from '../fixtures/validFields';
 
-export default function FormContainer({ category }) {
+export default function FormContainer({ category, onSubmit }) {
   const [fields, setFields] = useState({ email: '', password: '' });
 
   const [isButtonActive, setIsButtonActive] = useState(false);
@@ -51,10 +51,12 @@ export default function FormContainer({ category }) {
 
     checkUserInfo({ name, value });
   }
+
   return (
-    <Form
+    <FormLayout
       category={category}
       onChange={handleChange}
+      onSubmit={onSubmit}
       fields={fields}
       isButtonActive={isButtonActive}
     />

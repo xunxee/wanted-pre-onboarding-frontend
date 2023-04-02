@@ -1,4 +1,10 @@
-export function Form({ category, onChange, fields, isButtonActive }) {
+export function FormLayout({
+  category,
+  onChange,
+  onSubmit,
+  fields,
+  isButtonActive,
+}) {
   const { email, password } = fields;
 
   function handleChange(event) {
@@ -9,8 +15,16 @@ export function Form({ category, onChange, fields, isButtonActive }) {
     onChange({ name, value });
   }
 
+  function handleSubmit() {
+    return (event) => {
+      event.preventDefault();
+
+      onSubmit({ email, password });
+    };
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit()}>
       <input
         type="email"
         name="email"
