@@ -1,4 +1,4 @@
-5export function getItem(key) {
+export function getItem(key) {
   return localStorage.getItem(key);
 }
 
