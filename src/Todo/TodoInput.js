@@ -1,4 +1,4 @@
-export default function Input({ onChange }) {
+export default function TodoInput({ onChange }) {
   function handleChange(event) {
     const {
       target: { value },
