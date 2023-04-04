@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-import Input from './Input';
+import TodoInput from './TodoInput';
+import TodoList from './TodoList';
 
 export default function TodoContainer() {
   const [state, setState] = useState({
@@ -16,5 +17,10 @@ export default function TodoContainer() {
     });
   }
 
-  return <Input onChange={handleChangeTitle} />;
+  return (
+    <>
+      <TodoInput onChange={handleChangeTitle} />
+      <TodoList />
+    </>
+  );
 }

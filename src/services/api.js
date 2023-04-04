@@ -1,3 +1,5 @@
+import { getItem } from '../utils';
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 export async function postSignUp({ email, password }) {
@@ -38,4 +40,23 @@ export async function postSignIn({ email, password }) {
   if (!access_token) throw new Error('아이디나 비밀번호를 확인하세요.');
 
   return access_token;
+}
+
+export async function postCreateTodo({ inputValue }) {
+  const url = `${API_URL}todos`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${getItem('jwt_token')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      todo: inputValue,
+    }),
+  });
+
+  const data = await response.json();
+
+  return data;
 }
