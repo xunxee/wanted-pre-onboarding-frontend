@@ -60,3 +60,16 @@ export async function postCreateTodo({ inputValue }) {
 
   return data;
 }
+
+export async function getTodos() {
+  const url = `${API_URL}todos`;
+
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${getItem('jwt_token')}`,
+    },
+  });
+  const data = await response.json();
+
+  return data;
+}

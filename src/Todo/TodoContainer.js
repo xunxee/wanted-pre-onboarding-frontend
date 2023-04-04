@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
-import { postCreateTodo } from '../services/api';
+
+import { getTodos, postCreateTodo } from '../services/api';
 
 export default function TodoContainer() {
   const [state, setState] = useState({
@@ -11,6 +12,19 @@ export default function TodoContainer() {
   });
 
   const { inputValue, tasks } = state;
+
+  useEffect(() => {
+    async function fetchData() {
+      const todos = await getTodos();
+
+      setState((prevState) => ({
+        ...prevState,
+        tasks: todos,
+      }));
+    }
+
+    fetchData();
+  }, []);
 
   function handleChangeTitle(inputValue) {
     setState({
@@ -28,13 +42,15 @@ export default function TodoContainer() {
     });
   }
 
+  if (tasks.length === 0) return null;
+
   return (
     <>
       <TodoInput
         onChange={handleChangeTitle}
         handleClickAddTask={handleClickAddTask}
       />
-      <TodoList />
+      <TodoList tasks={tasks} setState={setState} />
     </>
   );
 }
