@@ -2,24 +2,38 @@ import { useState } from 'react';
 
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
+import { postCreateTodo } from '../services/api';
 
 export default function TodoContainer() {
   const [state, setState] = useState({
-    newId: 100,
-    taskTitle: '',
+    inputValue: '',
     tasks: [],
   });
 
-  function handleChangeTitle(value) {
+  const { inputValue, tasks } = state;
+
+  function handleChangeTitle(inputValue) {
     setState({
       ...state,
-      taskTitle: value,
+      inputValue,
+    });
+  }
+
+  async function handleClickAddTask() {
+    const task = await postCreateTodo({ inputValue });
+
+    setState({
+      inputValue: '',
+      tasks: [...tasks, task],
     });
   }
 
   return (
     <>
-      <TodoInput onChange={handleChangeTitle} />
+      <TodoInput
+        onChange={handleChangeTitle}
+        handleClickAddTask={handleClickAddTask}
+      />
       <TodoList />
     </>
   );

@@ -1,4 +1,4 @@
-export default function TodoInput({ onChange }) {
+export default function TodoInput({ onChange, handleClickAddTask }) {
   function handleChange(event) {
     const {
       target: { value },
@@ -15,7 +15,11 @@ export default function TodoInput({ onChange }) {
         placeholder="할 일을 입력하세요."
         onChange={handleChange}
       />
-      <button data-testid="new-todo-add-button" type="button">
+      <button
+        data-testid="new-todo-add-button"
+        type="button"
+        onClick={handleClickAddTask}
+      >
         추가
       </button>
     </>
