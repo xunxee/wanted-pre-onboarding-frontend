@@ -1,4 +1,4 @@
-import { deleteTodo } from '../services/api';
+import { deleteTodo, updateTodo } from '../services/api';
 
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
@@ -10,16 +10,14 @@ export default function TodoItem({
   todo,
   inputValue,
   isCompleted,
-  setState,
   onChangeTitle,
   onEditing,
   setOnEditing,
-  onChangeUpdateTodo,
 }) {
   function handleChangeCheckbox({ target }) {
     const { checked } = target;
 
-    onChangeUpdateTodo({ id, todo, isCompleted: checked });
+    updateTodo({ id, todo: inputValue, isCompleted: checked });
   }
 
   function handleClickEditButton() {
@@ -53,7 +51,6 @@ export default function TodoItem({
           inputValue={inputValue}
           isCompleted={isCompleted}
           onChangeTitle={onChangeTitle}
-          onChangeUpdateTodo={onChangeUpdateTodo}
           onClickSubmitButton={handleClickEditButton}
         />
       ) : (

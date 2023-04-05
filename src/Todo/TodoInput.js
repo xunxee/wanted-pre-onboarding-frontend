@@ -1,4 +1,8 @@
-export default function TodoInput({ onChangeTodo, onClickAddTaskButton }) {
+export default function TodoInput({
+  inputValue,
+  onChangeTodo,
+  onClickAddTaskButton,
+}) {
   function handleChange({ target: { value } }) {
     onChangeTodo(value);
   }
@@ -8,6 +12,7 @@ export default function TodoInput({ onChangeTodo, onClickAddTaskButton }) {
       <input
         data-testid="new-todo-input"
         type="text"
+        value={inputValue}
         placeholder="할 일을 입력하세요."
         onChange={handleChange}
       />

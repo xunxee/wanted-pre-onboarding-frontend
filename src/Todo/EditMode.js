@@ -1,10 +1,11 @@
+import { updateTodo } from '../services/api';
+
 export default function EditMode({
   id,
   todo,
   inputValue,
   isCompleted,
   onChangeTitle,
-  onChangeUpdateTodo,
   onClickSubmitButton,
 }) {
   function handleChange({ target: { value } }) {
@@ -12,7 +13,7 @@ export default function EditMode({
   }
 
   function handleClickSubmit() {
-    onChangeUpdateTodo({ id, todo: inputValue, isCompleted });
+    updateTodo({ id, todo: inputValue, isCompleted });
 
     onClickSubmitButton();
   }

@@ -3,12 +3,7 @@ import { useEffect, useState } from 'react';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 
-import {
-  getTodo,
-  postCreateTodo,
-  updateTodo,
-  deleteTodo,
-} from '../services/api';
+import { getTodo, postCreateTodo, deleteTodo } from '../services/api';
 
 export default function TodoContainer() {
   const [state, setState] = useState({
@@ -47,34 +42,28 @@ export default function TodoContainer() {
   async function handleClickAddTaskButton() {
     const task = await postCreateTodo({ inputValue });
 
-    setState({
+    setState((prevState) => ({
+      ...prevState,
       inputValue: '',
       tasks: [...tasks, task],
-    });
-  }
-
-  function handleChangeUpdateTodo({ id, todo, isCompleted }) {
-    updateTodo({ id, todo, isCompleted });
+    }));
   }
 
   function handleClickDeleteTodo({ id }) {
     deleteTodo({ id });
   }
 
-  if (tasks.length === 0) return null;
-
   return (
     <>
       <TodoInput
+        inputValue={inputValue}
         onChangeTodo={handleChangeTodo}
         onClickAddTaskButton={handleClickAddTaskButton}
       />
       <TodoList
         tasks={tasks}
         inputValue={inputValue}
-        setState={setState}
         onChangeTitle={handleChangeTodo}
-        onChangeUpdateTodo={handleChangeUpdateTodo}
         onEditing={onEditing}
         setOnEditing={setOnEditing}
         onClickDeleteTodo={handleClickDeleteTodo}
