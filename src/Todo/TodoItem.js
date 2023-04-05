@@ -1,4 +1,4 @@
-import { updateTodo } from '../services/api';
+import { deleteTodo } from '../services/api';
 
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
@@ -8,31 +8,18 @@ export default function TodoItem({
   id,
   index,
   todo,
+  inputValue,
   isCompleted,
   setState,
+  onChangeTitle,
   onEditing,
   setOnEditing,
+  onChangeUpdateTodo,
 }) {
-  function handleChange({ target }) {
-    const { name, checked } = target;
+  function handleChangeCheckbox({ target }) {
+    const { checked } = target;
 
-    setState((prevState) => {
-      const { tasks } = prevState;
-
-      return {
-        ...prevState,
-        tasks: tasks.map((task) => {
-          if (task.id !== Number(name)) return task;
-
-          return {
-            ...task,
-            isCompleted: !isCompleted,
-          };
-        }),
-      };
-    });
-
-    updateTodo({ id, todo, isCompleted: checked });
+    onChangeUpdateTodo({ id, todo, isCompleted: checked });
   }
 
   function handleClickEditButton() {
@@ -45,6 +32,10 @@ export default function TodoItem({
     ]);
   }
 
+  function handleClickDelete() {
+    deleteTodo({ id });
+  }
+
   return (
     <li>
       <label>
@@ -52,11 +43,19 @@ export default function TodoItem({
           type="checkbox"
           name={id}
           checked={isCompleted}
-          onChange={handleChange}
+          onChange={handleChangeCheckbox}
         />
       </label>
       {onEditing[index] ? (
-        <EditMode todo={todo} />
+        <EditMode
+          id={id}
+          todo={todo}
+          inputValue={inputValue}
+          isCompleted={isCompleted}
+          onChangeTitle={onChangeTitle}
+          onChangeUpdateTodo={onChangeUpdateTodo}
+          onClickSubmitButton={handleClickEditButton}
+        />
       ) : (
         <>
           <span>{todo}</span>
@@ -64,7 +63,7 @@ export default function TodoItem({
             setOnEditing={setOnEditing}
             onClick={handleClickEditButton}
           />
-          <DeleteButton />
+          <DeleteButton onClick={handleClickDelete} />
         </>
       )}
     </li>

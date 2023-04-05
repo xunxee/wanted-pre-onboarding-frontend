@@ -61,7 +61,7 @@ export async function postCreateTodo({ inputValue }) {
   return data;
 }
 
-export async function getTodos() {
+export async function getTodo() {
   const url = `${API_URL}todos`;
 
   const response = await fetch(url, {
@@ -88,5 +88,16 @@ export async function updateTodo({ id, todo, isCompleted }) {
       todo,
       isCompleted,
     }),
+  });
+}
+
+export async function deleteTodo({ id }) {
+  const url = `${API_URL}todos/${id}`;
+
+  await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${getItem('jwt_token')}`,
+    },
   });
 }
