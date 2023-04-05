@@ -19,6 +19,8 @@ export default function TodoPage() {
     navigate('/');
   }
 
+  if (!getItem('jwt_token')) return null;
+
   return (
     <>
       <div>
