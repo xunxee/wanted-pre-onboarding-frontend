@@ -1,10 +1,10 @@
-export default function TodoInput({ onChange, handleClickAddTask }) {
+export default function TodoInput({ onChangeTodo, handleClickAddTask }) {
   function handleChange(event) {
     const {
       target: { value },
     } = event;
 
-    onChange(value);
+    onChangeTodo(value);
   }
 
   return (
