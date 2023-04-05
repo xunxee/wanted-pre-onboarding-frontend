@@ -1,6 +1,20 @@
-export default function TodoItem({ id, todo, isCompleted, setState }) {
+import { updateTodo } from '../services/api';
+
+import EditButton from './EditButton';
+import DeleteButton from './DeleteButton';
+import EditMode from './EditMode';
+
+export default function TodoItem({
+  id,
+  index,
+  todo,
+  isCompleted,
+  setState,
+  onEditing,
+  setOnEditing,
+}) {
   function handleChange({ target }) {
-    const { name } = target;
+    const { name, checked } = target;
 
     setState((prevState) => {
       const { tasks } = prevState;
@@ -17,6 +31,18 @@ export default function TodoItem({ id, todo, isCompleted, setState }) {
         }),
       };
     });
+
+    updateTodo({ id, todo, isCompleted: checked });
+  }
+
+  function handleClickEditButton() {
+    setOnEditing((prevState) => [
+      ...prevState.map((state, number) => {
+        if (number === index) return !state;
+
+        return state;
+      }),
+    ]);
   }
 
   return (
@@ -28,8 +54,19 @@ export default function TodoItem({ id, todo, isCompleted, setState }) {
           checked={isCompleted}
           onChange={handleChange}
         />
-        <span>{todo}</span>
       </label>
+      {onEditing[index] ? (
+        <EditMode todo={todo} />
+      ) : (
+        <>
+          <span>{todo}</span>
+          <EditButton
+            setOnEditing={setOnEditing}
+            onClick={handleClickEditButton}
+          />
+          <DeleteButton />
+        </>
+      )}
     </li>
   );
 }

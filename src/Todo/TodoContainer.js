@@ -11,6 +11,8 @@ export default function TodoContainer() {
     tasks: [],
   });
 
+  const [onEditing, setOnEditing] = useState([]);
+
   const { inputValue, tasks } = state;
 
   useEffect(() => {
@@ -25,6 +27,10 @@ export default function TodoContainer() {
 
     fetchData();
   }, []);
+
+  if (tasks.length > onEditing.length) {
+    setOnEditing(tasks.map((_) => false));
+  }
 
   function handleChangeTitle(inputValue) {
     setState({
@@ -50,7 +56,12 @@ export default function TodoContainer() {
         onChange={handleChangeTitle}
         handleClickAddTask={handleClickAddTask}
       />
-      <TodoList tasks={tasks} setState={setState} />
+      <TodoList
+        tasks={tasks}
+        setState={setState}
+        onEditing={onEditing}
+        setOnEditing={setOnEditing}
+      />
     </>
   );
 }
