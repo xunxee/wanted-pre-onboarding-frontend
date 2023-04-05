@@ -44,7 +44,7 @@ export default function TodoContainer() {
     }));
   }
 
-  async function handleClickAddTask() {
+  async function handleClickAddTaskButton() {
     const task = await postCreateTodo({ inputValue });
 
     setState({
@@ -67,7 +67,7 @@ export default function TodoContainer() {
     <>
       <TodoInput
         onChangeTodo={handleChangeTodo}
-        handleClickAddTask={handleClickAddTask}
+        onClickAddTaskButton={handleClickAddTaskButton}
       />
       <TodoList
         tasks={tasks}

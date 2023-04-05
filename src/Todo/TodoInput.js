@@ -1,9 +1,5 @@
-export default function TodoInput({ onChangeTodo, handleClickAddTask }) {
-  function handleChange(event) {
-    const {
-      target: { value },
-    } = event;
-
+export default function TodoInput({ onChangeTodo, onClickAddTaskButton }) {
+  function handleChange({ target: { value } }) {
     onChangeTodo(value);
   }
 
@@ -18,7 +14,7 @@ export default function TodoInput({ onChangeTodo, handleClickAddTask }) {
       <button
         data-testid="new-todo-add-button"
         type="button"
-        onClick={handleClickAddTask}
+        onClick={onClickAddTaskButton}
       >
         추가
       </button>
