@@ -24,3 +24,25 @@ export function addTask({ tasks, task }) {
     tasks: [...tasks, task],
   });
 }
+
+export function changeCheckbox({ id, checked }) {
+  return (prevState) => {
+    const { tasks } = prevState;
+
+    return {
+      ...prevState,
+      tasks: tasks.map((task) => {
+        const { id: keyName } = task;
+
+        if (keyName === id) {
+          return {
+            ...task,
+            isCompleted: checked,
+          };
+        }
+
+        return task;
+      }),
+    };
+  };
+}

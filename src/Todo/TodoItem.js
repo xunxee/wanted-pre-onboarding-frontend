@@ -3,6 +3,7 @@ import { deleteTodo, updateTodo } from '../services/api';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 import EditMode from './EditMode';
+import { changeCheckbox } from '../utils';
 
 export default function TodoItem({
   id,
@@ -20,24 +21,7 @@ export default function TodoItem({
 
     updateTodo({ id, todo, isCompleted: checked });
 
-    setState((prevState) => {
-      const { tasks } = prevState;
-
-      return {
-        ...prevState,
-        tasks: tasks.map((task) => {
-          const { id: keyName } = task;
-
-          if (keyName === id)
-            return {
-              ...task,
-              isCompleted: checked,
-            };
-
-          return task;
-        }),
-      };
-    });
+    setState(changeCheckbox({ id, checked }));
   }
 
   function handleClickEditButton() {
