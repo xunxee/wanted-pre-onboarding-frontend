@@ -2,9 +2,9 @@ import TodoItem from './TodoItem';
 
 export default function TodoList({
   tasks,
-  inputValue,
-  onChangeTitle,
+  editModeInputValue,
   onEditing,
+  onChangeInput,
   setOnEditing,
   onClickDeleteTodo,
 }) {
@@ -16,9 +16,9 @@ export default function TodoList({
           id={id}
           index={index}
           todo={todo}
-          inputValue={inputValue}
+          editModeInputValue={editModeInputValue}
           isCompleted={isCompleted}
-          onChangeTitle={onChangeTitle}
+          onChangeInput={onChangeInput}
           onEditing={onEditing}
           setOnEditing={setOnEditing}
           onClickDeleteTodo={onClickDeleteTodo}

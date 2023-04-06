@@ -3,17 +3,17 @@ import { updateTodo } from '../services/api';
 export default function EditMode({
   id,
   todo,
-  inputValue,
+  editModeInputValue,
   isCompleted,
-  onChangeTitle,
+  onChangeInput,
   onClickSubmitButton,
 }) {
   function handleChange({ target: { value } }) {
-    onChangeTitle(value);
+    onChangeInput({ category: 'editModeInputValue', value });
   }
 
   function handleClickSubmit() {
-    updateTodo({ id, todo: inputValue, isCompleted });
+    updateTodo({ id, todo: editModeInputValue, isCompleted });
 
     onClickSubmitButton();
   }

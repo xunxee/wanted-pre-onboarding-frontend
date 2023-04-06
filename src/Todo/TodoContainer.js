@@ -8,10 +8,11 @@ import { getTodo, postCreateTodo, deleteTodo } from '../services/api';
 export default function TodoContainer() {
   const [state, setState] = useState({
     inputValue: '',
+    editModeInputValue: '',
     tasks: [],
   });
 
-  const { inputValue, tasks } = state;
+  const { inputValue, editModeInputValue, tasks } = state;
 
   const [onEditing, setOnEditing] = useState([]);
 
@@ -32,10 +33,10 @@ export default function TodoContainer() {
     setOnEditing(tasks.map((_) => false));
   }
 
-  function handleChangeTodo(inputValue) {
+  function handleChangeInput({ category, value }) {
     setState((prevState) => ({
       ...prevState,
-      inputValue,
+      [category]: value,
     }));
   }
 
@@ -57,14 +58,14 @@ export default function TodoContainer() {
     <>
       <TodoInput
         inputValue={inputValue}
-        onChangeTodo={handleChangeTodo}
+        onChangeInput={handleChangeInput}
         onClickAddTaskButton={handleClickAddTaskButton}
       />
       <TodoList
         tasks={tasks}
-        inputValue={inputValue}
-        onChangeTitle={handleChangeTodo}
+        editModeInputValue={editModeInputValue}
         onEditing={onEditing}
+        onChangeInput={handleChangeInput}
         setOnEditing={setOnEditing}
         onClickDeleteTodo={handleClickDeleteTodo}
       />

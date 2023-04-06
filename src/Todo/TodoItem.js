@@ -8,16 +8,16 @@ export default function TodoItem({
   id,
   index,
   todo,
-  inputValue,
+  editModeInputValue,
   isCompleted,
-  onChangeTitle,
+  onChangeInput,
   onEditing,
   setOnEditing,
 }) {
   function handleChangeCheckbox({ target }) {
     const { checked } = target;
 
-    updateTodo({ id, todo: inputValue, isCompleted: checked });
+    updateTodo({ id, todo, isCompleted: checked });
   }
 
   function handleClickEditButton() {
@@ -48,9 +48,9 @@ export default function TodoItem({
         <EditMode
           id={id}
           todo={todo}
-          inputValue={inputValue}
+          editModeInputValue={editModeInputValue}
           isCompleted={isCompleted}
-          onChangeTitle={onChangeTitle}
+          onChangeInput={onChangeInput}
           onClickSubmitButton={handleClickEditButton}
         />
       ) : (

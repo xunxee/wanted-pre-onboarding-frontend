@@ -1,10 +1,10 @@
 export default function TodoInput({
   inputValue,
-  onChangeTodo,
+  onChangeInput,
   onClickAddTaskButton,
 }) {
   function handleChange({ target: { value } }) {
-    onChangeTodo(value);
+    onChangeInput({ category: 'inputValue', value });
   }
 
   return (
