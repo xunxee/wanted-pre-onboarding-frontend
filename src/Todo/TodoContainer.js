@@ -4,6 +4,7 @@ import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 
 import { getTodo, postCreateTodo, deleteTodo } from '../services/api';
+import { changeInput } from '../utils';
 
 export default function TodoContainer() {
   const [state, setState] = useState({
@@ -34,10 +35,7 @@ export default function TodoContainer() {
   }
 
   function handleChangeInput({ category, value }) {
-    setState((prevState) => ({
-      ...prevState,
-      [category]: value,
-    }));
+    setState(changeInput({ category, value }));
   }
 
   async function handleClickAddTaskButton() {

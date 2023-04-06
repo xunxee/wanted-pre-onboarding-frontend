@@ -9,3 +9,10 @@ export function saveItem(key, value) {
 export function clearItem() {
   localStorage.clear();
 }
+
+export function changeInput({ category, value }) {
+  return (prevState) => ({
+    ...prevState,
+    [category]: value,
+  });
+}
