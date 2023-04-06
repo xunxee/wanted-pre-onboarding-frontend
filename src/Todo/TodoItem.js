@@ -78,27 +78,27 @@ export default function TodoItem({
           checked={isCompleted}
           onChange={handleChangeCheckbox}
         />
-      </label>
-      {onEditing[index] ? (
-        <EditMode
-          id={id}
-          todo={todo}
-          editModeInputValue={editModeInputValue}
-          isCompleted={isCompleted}
-          setState={setState}
-          onChangeInput={onChangeInput}
-          onClickSubmitButton={handleClickEditButton}
-        />
-      ) : (
-        <>
-          <span>{todo}</span>
-          <EditButton
-            setOnEditing={setOnEditing}
-            onClick={handleClickEditButton}
+        {onEditing[index] ? (
+          <EditMode
+            id={id}
+            todo={todo}
+            editModeInputValue={editModeInputValue}
+            isCompleted={isCompleted}
+            setState={setState}
+            onChangeInput={onChangeInput}
+            onClickSubmitButton={handleClickEditButton}
           />
-          <DeleteButton onClick={handleClickDelete} />
-        </>
-      )}
+        ) : (
+          <>
+            <span>{todo}</span>
+            <EditButton
+              setOnEditing={setOnEditing}
+              onClick={handleClickEditButton}
+            />
+            <DeleteButton onClick={handleClickDelete} />
+          </>
+        )}
+      </label>
     </li>
   );
 }
