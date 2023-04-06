@@ -1,4 +1,4 @@
-import { deleteTodo, updateTodo } from '../services/api';
+import { deleteTodo, getTodo, updateTodo } from '../services/api';
 
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
@@ -10,14 +10,34 @@ export default function TodoItem({
   todo,
   editModeInputValue,
   isCompleted,
-  onChangeInput,
   onEditing,
+  setState,
   setOnEditing,
+  onChangeInput,
 }) {
   function handleChangeCheckbox({ target }) {
     const { checked } = target;
 
     updateTodo({ id, todo, isCompleted: checked });
+
+    setState((prevState) => {
+      const { tasks } = prevState;
+
+      return {
+        ...prevState,
+        tasks: tasks.map((task) => {
+          const { id: keyName } = task;
+
+          if (keyName === id)
+            return {
+              ...task,
+              isCompleted: checked,
+            };
+
+          return task;
+        }),
+      };
+    });
   }
 
   function handleClickEditButton() {
@@ -50,6 +70,7 @@ export default function TodoItem({
           todo={todo}
           editModeInputValue={editModeInputValue}
           isCompleted={isCompleted}
+          setState={setState}
           onChangeInput={onChangeInput}
           onClickSubmitButton={handleClickEditButton}
         />
