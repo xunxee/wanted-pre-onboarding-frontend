@@ -5,6 +5,7 @@ export default function EditMode({
   todo,
   editModeInputValue,
   isCompleted,
+  setState,
   onChangeInput,
   onClickSubmitButton,
 }) {
@@ -14,6 +15,24 @@ export default function EditMode({
 
   function handleClickSubmit() {
     updateTodo({ id, todo: editModeInputValue, isCompleted });
+
+    setState((prevState) => {
+      const { tasks } = prevState;
+
+      return {
+        ...prevState,
+        tasks: tasks.map((task) => {
+          const { id: keyName } = task;
+
+          if (id !== keyName) return task;
+
+          return {
+            ...task,
+            todo: editModeInputValue,
+          };
+        }),
+      };
+    });
 
     onClickSubmitButton();
   }

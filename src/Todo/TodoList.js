@@ -4,8 +4,9 @@ export default function TodoList({
   tasks,
   editModeInputValue,
   onEditing,
-  onChangeInput,
+  setState,
   setOnEditing,
+  onChangeInput,
   onClickDeleteTodo,
 }) {
   return (
@@ -18,9 +19,10 @@ export default function TodoList({
           todo={todo}
           editModeInputValue={editModeInputValue}
           isCompleted={isCompleted}
-          onChangeInput={onChangeInput}
           onEditing={onEditing}
+          setState={setState}
           setOnEditing={setOnEditing}
+          onChangeInput={onChangeInput}
           onClickDeleteTodo={onClickDeleteTodo}
         />
       ))}
