@@ -73,3 +73,25 @@ export function deleteTask({ id }) {
     };
   };
 }
+
+export function changeTask({ id, editModeInputValue }) {
+  return (prevState) => {
+    const { tasks } = prevState;
+
+    return {
+      ...prevState,
+      tasks: tasks.map((task) => {
+        const { id: keyName } = task;
+
+        if (id === keyName) {
+          return {
+            ...task,
+            todo: editModeInputValue,
+          };
+        }
+
+        return task;
+      }),
+    };
+  };
+}
