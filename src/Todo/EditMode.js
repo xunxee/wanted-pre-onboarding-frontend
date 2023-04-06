@@ -16,6 +16,12 @@ export default function EditMode({
   }
 
   function handleClickSubmit() {
+    if (editModeInputValue === '') {
+      onClickSubmitButton();
+
+      return;
+    }
+
     updateTodo({ id, todo: editModeInputValue, isCompleted });
 
     setState(changeTask({ id, editModeInputValue }));
