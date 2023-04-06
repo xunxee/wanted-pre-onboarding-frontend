@@ -3,7 +3,8 @@ import { deleteTodo, updateTodo } from '../services/api';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 import EditMode from './EditMode';
-import { changeCheckbox, changeOnEditing } from '../utils';
+
+import { changeCheckbox, changeOnEditing, deleteTask } from '../utils';
 
 export default function TodoItem({
   id,
@@ -31,20 +32,7 @@ export default function TodoItem({
   function handleClickDelete() {
     deleteTodo({ id });
 
-    setState((prevState) => {
-      const { tasks } = prevState;
-
-      return {
-        ...prevState,
-        tasks: tasks.filter((task) => {
-          const { id: keyName } = task;
-
-          if (keyName === id) return false;
-
-          return true;
-        }),
-      };
-    });
+    setState(deleteTask({ id }));
   }
 
   return (

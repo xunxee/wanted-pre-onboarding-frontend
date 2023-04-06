@@ -56,3 +56,20 @@ export function changeOnEditing({ index }) {
     }),
   ];
 }
+
+export function deleteTask({ id }) {
+  return (prevState) => {
+    const { tasks } = prevState;
+
+    return {
+      ...prevState,
+      tasks: tasks.filter((task) => {
+        const { id: keyName } = task;
+
+        if (keyName === id) return false;
+
+        return true;
+      }),
+    };
+  };
+}
