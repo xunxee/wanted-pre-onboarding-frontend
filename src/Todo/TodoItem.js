@@ -1,4 +1,4 @@
-import { deleteTodo, getTodo, updateTodo } from '../services/api';
+import { deleteTodo, updateTodo } from '../services/api';
 
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
@@ -52,6 +52,21 @@ export default function TodoItem({
 
   function handleClickDelete() {
     deleteTodo({ id });
+
+    setState((prevState) => {
+      const { tasks } = prevState;
+
+      return {
+        ...prevState,
+        tasks: tasks.filter((task) => {
+          const { id: keyName } = task;
+
+          if (keyName === id) return false;
+
+          return true;
+        }),
+      };
+    });
   }
 
   return (
