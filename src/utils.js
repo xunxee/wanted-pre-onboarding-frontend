@@ -46,3 +46,13 @@ export function changeCheckbox({ id, checked }) {
     };
   };
 }
+
+export function changeOnEditing({ index }) {
+  return (prevState) => [
+    ...prevState.map((state, number) => {
+      if (number === index) return !state;
+
+      return state;
+    }),
+  ];
+}

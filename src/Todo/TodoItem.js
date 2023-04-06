@@ -3,7 +3,7 @@ import { deleteTodo, updateTodo } from '../services/api';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 import EditMode from './EditMode';
-import { changeCheckbox } from '../utils';
+import { changeCheckbox, changeOnEditing } from '../utils';
 
 export default function TodoItem({
   id,
@@ -25,13 +25,7 @@ export default function TodoItem({
   }
 
   function handleClickEditButton() {
-    setOnEditing((prevState) => [
-      ...prevState.map((state, number) => {
-        if (number === index) return !state;
-
-        return state;
-      }),
-    ]);
+    setOnEditing(changeOnEditing({ index }));
   }
 
   function handleClickDelete() {
