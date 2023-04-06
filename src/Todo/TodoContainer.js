@@ -4,7 +4,8 @@ import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 
 import { getTodo, postCreateTodo, deleteTodo } from '../services/api';
-import { changeInput } from '../utils';
+
+import { addTask, changeInput } from '../utils';
 
 export default function TodoContainer() {
   const [state, setState] = useState({
@@ -41,11 +42,7 @@ export default function TodoContainer() {
   async function handleClickAddTaskButton() {
     const task = await postCreateTodo({ inputValue });
 
-    setState((prevState) => ({
-      ...prevState,
-      inputValue: '',
-      tasks: [...tasks, task],
-    }));
+    setState(addTask({ tasks, task }));
   }
 
   function handleClickDeleteTodo({ id }) {

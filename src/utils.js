@@ -16,3 +16,11 @@ export function changeInput({ category, value }) {
     [category]: value,
   });
 }
+
+export function addTask({ tasks, task }) {
+  return (prevState) => ({
+    ...prevState,
+    inputValue: '',
+    tasks: [...tasks, task],
+  });
+}
