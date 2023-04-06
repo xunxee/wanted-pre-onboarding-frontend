@@ -27,7 +27,7 @@ export default function TodoContainer() {
     }
 
     fetchData();
-  }, [state]);
+  }, []);
 
   if (tasks.length > onEditing.length) {
     setOnEditing(tasks.map((_) => false));
@@ -65,8 +65,9 @@ export default function TodoContainer() {
         tasks={tasks}
         editModeInputValue={editModeInputValue}
         onEditing={onEditing}
-        onChangeInput={handleChangeInput}
+        setState={setState}
         setOnEditing={setOnEditing}
+        onChangeInput={handleChangeInput}
         onClickDeleteTodo={handleClickDeleteTodo}
       />
     </>
