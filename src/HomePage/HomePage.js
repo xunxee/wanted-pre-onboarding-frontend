@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import PALETTE from '../styles/palette';
+import BASE_STYLES from '../styles/baseStyles';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -16,14 +17,10 @@ const {
   vividBlue,
 } = PALETTE;
 
+const { WRAPPER, BUTTON } = BASE_STYLES;
+
 const Wrapper = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minWidth: '290px',
-  maxWidth: '460px',
-  margin: '0 auto',
+  ...WRAPPER,
 });
 
 const TitleWrapper = styled.div({
@@ -47,20 +44,9 @@ const H2 = styled.h2({
 });
 
 const Button = styled.button({
-  all: 'unset',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100%',
-  margin: '5% 0 0',
-  padding: '16px 17px',
-  borderRadius: '2px',
-  fontSize: '1.2rem',
-  fontWeight: 'bold',
+  ...BUTTON,
   color: white,
   backgroundColor: vividBlue,
-  boxShadow: 'inset 0 -2px 0',
-  cursor: 'pointer',
 });
 
 export default function HomePage() {
@@ -73,14 +59,14 @@ export default function HomePage() {
   return (
     <Wrapper>
       <TitleWrapper>
-        <StyledWord color={saddleBrown}>We</StyledWord>
-        <StyledWord color={outrageousOrange}>l</StyledWord>
-        <StyledWord color={californiaOrange}>c</StyledWord>
-        <StyledWord color={supernova}>o</StyledWord>
-        <StyledWord color={appleGreen}>m</StyledWord>
-        <StyledWord color={deepSkyBlue}>e</StyledWord>
+        <StyledWord color={saddleBrown}>Li</StyledWord>
+        <StyledWord color={outrageousOrange}>s</StyledWord>
+        <StyledWord color={californiaOrange}>t</StyledWord>
+        <StyledWord color={supernova}>i</StyledWord>
+        <StyledWord color={appleGreen}>f</StyledWord>
+        <StyledWord color={deepSkyBlue}>y</StyledWord>
       </TitleWrapper>
-      <H2>Listify</H2>
+      <H2>Welcome</H2>
       <Button name="signin" onClick={handleClick}>
         Sign In
       </Button>
