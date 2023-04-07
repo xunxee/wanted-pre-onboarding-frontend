@@ -7,25 +7,21 @@ export default function TodoList({
   setState,
   setOnEditing,
   onChangeInput,
-  onClickDeleteTodo,
 }) {
-  return (
-    <>
-      {tasks.map(({ id, todo, isCompleted }, index) => (
-        <TodoItem
-          key={id}
-          id={id}
-          index={index}
-          todo={todo}
-          editModeInputValue={editModeInputValue}
-          isCompleted={isCompleted}
-          onEditing={onEditing}
-          setState={setState}
-          setOnEditing={setOnEditing}
-          onChangeInput={onChangeInput}
-          onClickDeleteTodo={onClickDeleteTodo}
-        />
-      ))}
-    </>
-  );
+  return tasks.map((task, index) => {
+    const { id } = task;
+
+    return (
+      <TodoItem
+        key={id}
+        index={index}
+        task={task}
+        editModeInputValue={editModeInputValue}
+        onEditing={onEditing}
+        setState={setState}
+        setOnEditing={setOnEditing}
+        onChangeInput={onChangeInput}
+      />
+    );
+  });
 }

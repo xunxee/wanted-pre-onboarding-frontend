@@ -45,10 +45,6 @@ export default function TodoContainer() {
     setState(addTask({ tasks, task }));
   }
 
-  function handleClickDeleteTodo({ id }) {
-    deleteTodo({ id });
-  }
-
   return (
     <>
       <TodoInput
@@ -63,7 +59,6 @@ export default function TodoContainer() {
         setState={setState}
         setOnEditing={setOnEditing}
         onChangeInput={handleChangeInput}
-        onClickDeleteTodo={handleClickDeleteTodo}
       />
     </>
   );

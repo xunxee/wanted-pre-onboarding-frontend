@@ -3,14 +3,14 @@ import { updateTodo } from '../services/api';
 import { changeTask } from '../utils';
 
 export default function EditMode({
-  id,
-  todo,
+  task,
   editModeInputValue,
-  isCompleted,
   setState,
   onChangeInput,
   onClickSubmitButton,
 }) {
+  const { id, todo, isCompleted } = task;
+
   function handleChange({ target: { value } }) {
     onChangeInput({ category: 'editModeInputValue', value });
   }

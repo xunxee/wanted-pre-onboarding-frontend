@@ -7,16 +7,16 @@ import EditMode from './EditMode';
 import { changeCheckbox, changeOnEditing, deleteTask } from '../utils';
 
 export default function TodoItem({
-  id,
   index,
-  todo,
+  task,
   editModeInputValue,
-  isCompleted,
   onEditing,
   setState,
   setOnEditing,
   onChangeInput,
 }) {
+  const { id, todo, isCompleted } = task;
+
   function handleChangeCheckbox({ target }) {
     const { checked } = target;
 
@@ -48,10 +48,8 @@ export default function TodoItem({
       </label>
       {onEditing[index] ? (
         <EditMode
-          id={id}
-          todo={todo}
+          task={task}
           editModeInputValue={editModeInputValue}
-          isCompleted={isCompleted}
           setState={setState}
           onChangeInput={onChangeInput}
           onClickSubmitButton={handleClickEditButton}
