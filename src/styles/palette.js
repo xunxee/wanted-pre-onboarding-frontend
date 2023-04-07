@@ -8,6 +8,7 @@ const palette = {
   appleGreen: '#8bd02e',
   deepSkyBlue: '#00bfff',
   vividBlue: '#0074e9',
+  babyBlueEyes: '#76bafe',
 };
 
 export default palette;
