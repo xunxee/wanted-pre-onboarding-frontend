@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 
-import { getTodo, postCreateTodo, deleteTodo } from '../services/api';
+import { getTodo, postCreateTodo } from '../services/api';
 
 import { addTask, changeInput } from '../utils';
 

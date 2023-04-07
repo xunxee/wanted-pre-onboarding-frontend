@@ -7,6 +7,12 @@ export default function TodoInput({
     onChangeInput({ category: 'inputValue', value });
   }
 
+  function handleKeyDown({ code }) {
+    if (code !== 'Enter') return;
+
+    return onClickAddTaskButton();
+  }
+
   return (
     <>
       <input
@@ -15,6 +21,7 @@ export default function TodoInput({
         value={inputValue}
         placeholder="할 일을 입력하세요."
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
       <button
         data-testid="new-todo-add-button"
