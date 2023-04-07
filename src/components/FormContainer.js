@@ -4,7 +4,7 @@ import { FormLayout } from './FormLayout';
 
 import VALID_FIELDS from '../fixtures/validFields';
 
-export default function FormContainer({ category, onSubmit }) {
+export default function FormContainer({ category, onSubmit, onClick }) {
   const [fields, setFields] = useState({ email: '', password: '' });
 
   const [isButtonActive, setIsButtonActive] = useState(false);
@@ -57,6 +57,7 @@ export default function FormContainer({ category, onSubmit }) {
       category={category}
       onChange={handleChange}
       onSubmit={onSubmit}
+      onClick={onClick}
       fields={fields}
       isButtonActive={isButtonActive}
     />
