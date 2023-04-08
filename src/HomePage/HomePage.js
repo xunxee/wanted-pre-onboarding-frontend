@@ -4,20 +4,14 @@ import PALETTE from '../styles/palette';
 import BASE_STYLES from '../styles/baseStyles';
 
 import { useNavigate } from 'react-router-dom';
+import H2 from '../components/H2';
 
-const { white, slateGrey, vividBlue } = PALETTE;
+const { white, vividBlue } = PALETTE;
 
 const { WRAPPER, BUTTON } = BASE_STYLES;
 
 const Wrapper = styled.div({
   ...WRAPPER,
-});
-
-const H2 = styled.h2({
-  padding: '10% 0 0',
-  fontSize: '1.8rem',
-  fontWeight: 'bold',
-  color: slateGrey,
 });
 
 const Button = styled.button({
@@ -35,7 +29,7 @@ export default function HomePage() {
 
   return (
     <Wrapper>
-      <H2>Welcome</H2>
+      <H2 title="Welcome" />
       <Button name="signin" onClick={handleClick}>
         Sign In
       </Button>
