@@ -22,21 +22,13 @@ const Wrapper = styled.div({
   },
 });
 
-const SubmitButton = styled.button({
+const Button = styled.button(({ backgroundColor }) => ({
   ...BUTTON,
   padding: '8px 14px',
   fontSize: '1rem',
   color: white,
-  backgroundColor: kellyGreen,
-});
-
-const CancelButton = styled.button({
-  ...BUTTON,
-  padding: '8px 14px',
-  fontSize: '1rem',
-  color: white,
-  backgroundColor: conifer,
-});
+  backgroundColor,
+}));
 
 export default function EditMode({
   task,
@@ -78,20 +70,22 @@ export default function EditMode({
         onChange={handleChange}
       />
       <div>
-        <SubmitButton
+        <Button
           type="button"
           data-testid="submit-button"
           onClick={handleClickSubmit}
+          backgroundColor={kellyGreen}
         >
           제출
-        </SubmitButton>
-        <CancelButton
+        </Button>
+        <Button
           type="button"
           data-testid="cancel-button"
           onClick={handleClickCancel}
+          backgroundColor={conifer}
         >
           취소
-        </CancelButton>
+        </Button>
       </div>
     </Wrapper>
   );
