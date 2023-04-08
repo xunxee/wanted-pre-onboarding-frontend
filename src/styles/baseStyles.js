@@ -14,7 +14,6 @@ const baseStyles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
     margin: '5% 0 0',
     padding: '16px 0',
     borderRadius: '2px',

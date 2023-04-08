@@ -1,6 +1,42 @@
+import styled from '@emotion/styled';
+
+import PALETTE from '../styles/palette';
+import BASE_STYLES from '../styles/baseStyles';
+
 import { updateTodo } from '../services/api';
 
 import { changeTask } from '../utils';
+
+const { white, conifer, kellyGreen } = PALETTE;
+
+const { BUTTON } = BASE_STYLES;
+
+const Wrapper = styled.div({
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+  '& div': {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '120px',
+  },
+});
+
+const SubmitButton = styled.button({
+  ...BUTTON,
+  padding: '8px 14px',
+  fontSize: '1rem',
+  color: white,
+  backgroundColor: kellyGreen,
+});
+
+const CancelButton = styled.button({
+  ...BUTTON,
+  padding: '8px 14px',
+  fontSize: '1rem',
+  color: white,
+  backgroundColor: conifer,
+});
 
 export default function EditMode({
   task,
@@ -34,27 +70,29 @@ export default function EditMode({
   }
 
   return (
-    <>
+    <Wrapper>
       <input
         type="text"
         data-testid="modify-input"
         defaultValue={todo}
         onChange={handleChange}
       />
-      <button
-        type="button"
-        data-testid="submit-button"
-        onClick={handleClickSubmit}
-      >
-        제출
-      </button>
-      <button
-        type="button"
-        data-testid="cancel-button"
-        onClick={handleClickCancel}
-      >
-        취소
-      </button>
-    </>
+      <div>
+        <SubmitButton
+          type="button"
+          data-testid="submit-button"
+          onClick={handleClickSubmit}
+        >
+          제출
+        </SubmitButton>
+        <CancelButton
+          type="button"
+          data-testid="cancel-button"
+          onClick={handleClickCancel}
+        >
+          취소
+        </CancelButton>
+      </div>
+    </Wrapper>
   );
 }

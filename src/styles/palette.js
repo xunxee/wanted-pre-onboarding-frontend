@@ -6,6 +6,8 @@ const palette = {
   californiaOrange: '#ffa108',
   supernova: '#ffd038',
   appleGreen: '#8bd02e',
+  kellyGreen: '#08ae15',
+  conifer: '#aae363',
   deepSkyBlue: '#00bfff',
   vividBlue: '#0074e9',
   babyBlueEyes: '#76bafe',

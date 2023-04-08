@@ -16,6 +16,7 @@ const Wrapper = styled.div({
 
 const Button = styled.button({
   ...BUTTON,
+  width: '100%',
   color: white,
   backgroundColor: vividBlue,
 });
